@@ -1,11 +1,19 @@
 package vehicle;
 
+import component.Wheel;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Car {
     private String name;
     private String honk;
     private Long acceleration;
     private Long deceleration;
     private Long currentSpeed;
+    private List<Wheel> accelerateWheels;
+    private List<Wheel> decelerateWheels;
 
     public Car(String name, String honk, Long acceleration, Long deceleration) {
         this.name = name;
@@ -13,6 +21,18 @@ public class Car {
         this.acceleration = acceleration;
         this.deceleration = deceleration;
         this.currentSpeed = 0L;
+        accelerateWheels = new ArrayList<>();
+        decelerateWheels = new ArrayList<>();
+
+        accelerateWheels.addAll(Arrays.asList(
+                new Wheel("Wheel lv1", 0L, 0L),
+                new Wheel("Wheel lv1", 0L, 0L)
+        ));
+
+        decelerateWheels.addAll(Arrays.asList(
+                new Wheel("Wheel lv1", 0L, 0L),
+                new Wheel("Wheel lv1", 0L, 0L)
+        ));
     }
 
     public String getName() {
@@ -47,12 +67,42 @@ public class Car {
         this.deceleration = deceleration;
     }
 
-    public void accelerate() {
-        currentSpeed += acceleration;
+    public Long getCurrentSpeed() {
+        return currentSpeed;
     }
 
-    public void decelerate() {
-        currentSpeed -= deceleration;
+    public List<Wheel> getAccelerateWheels() {
+        return accelerateWheels;
+    }
+
+    public void setAccelerateWheels(List<Wheel> accelerateWheels) {
+        this.accelerateWheels = accelerateWheels;
+    }
+
+    public List<Wheel> getDecelerateWheels() {
+        return decelerateWheels;
+    }
+
+    public void setDecelerateWheels(List<Wheel> decelerateWheels) {
+        this.decelerateWheels = decelerateWheels;
+    }
+
+    public Long accelerate() {
+        Long friction = 0L;
+        for (Wheel wheel : accelerateWheels) {
+            friction += wheel.applyFrictionBonus();
+        }
+        currentSpeed += acceleration + friction;
+        return currentSpeed;
+    }
+
+    public Long decelerate() {
+        Long friction = 0L;
+        for (Wheel wheel : decelerateWheels) {
+            friction += wheel.applyFrictionBonus();
+        }
+        currentSpeed -= deceleration - friction;
+        return currentSpeed;
     }
 
     public void honk() {
