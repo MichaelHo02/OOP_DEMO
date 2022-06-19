@@ -1,12 +1,14 @@
 package vehicle;
 
 import component.Wheel;
+import stat.HealthBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Car {
+    private HealthBar healthBar;
     private String name;
     private String honk;
     private Long acceleration;
@@ -33,6 +35,8 @@ public class Car {
                 new Wheel("Wheel lv1", 0L, 0L),
                 new Wheel("Wheel lv1", 0L, 0L)
         ));
+
+        healthBar = new HealthBar(100L, 10L);
     }
 
     public String getName() {
@@ -111,5 +115,9 @@ public class Car {
 
     public void showName() {
         System.out.println(name);
+    }
+
+    public void getHit() {
+
     }
 }
