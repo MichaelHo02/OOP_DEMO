@@ -116,7 +116,7 @@ public class GameController {
                     }
                     case "4" -> {
                         vehicle = new SeaPlane();
-                        environments.addAll(List.of(Environment.HOLLOW_WATER, Environment.AIR));
+                        environments.addAll(List.of(Environment.SHALLOW_WATER, Environment.AIR));
                     }
                     default -> throw new IllegalStateException("Unexpected value: " + input);
                 };
@@ -165,7 +165,7 @@ public class GameController {
                     case AIR -> {
                         Flyable flyable = vehicle instanceof Flyable ? ((Flyable) vehicle) : null;
                         if (flyable == null) {
-                            System.out.println("cannot move on air");
+                            System.out.println("Cannot move on air");
                             break;
                         }
                         switch (inputInt) {
@@ -178,7 +178,7 @@ public class GameController {
                     case HOLLOW_WATER -> {
                         Submersible submersible = vehicle instanceof Submersible ? ((Submersible) vehicle) : null;
                         if (submersible == null) {
-                            System.out.println("cannot move on hollow water");
+                            System.out.println("Cannot move on hollow water");
                             break;
                         }
                         switch (inputInt) {
@@ -202,7 +202,7 @@ public class GameController {
                 }
                 System.out.println("Your health: " + vehicle.getHealth().getCurrentHealth());
                 System.out.println("Your vehicle speed: " + vehicle.getCurrentSpeed());
-                System.out.println("your vehicle attitude: ");
+                System.out.println("Your vehicle attitude: " + vehicle.getAttitude());
             }
             default -> throw new IllegalStateException("Unexpected value");
         }

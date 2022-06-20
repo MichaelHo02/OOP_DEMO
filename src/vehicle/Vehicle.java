@@ -33,6 +33,10 @@ public abstract class Vehicle {
         return currentSpeed;
     }
 
+    public Long getAttitude() {
+        return attitude;
+    }
+
     public void getHit(double rate) {
         healthBar.decrementHealthBy(rate);
     }
