@@ -27,14 +27,6 @@ public class HealthBar {
         return alive;
     }
 
-    public void incrementHealthBy(double rate) {
-        if (currentHealth + rate <= maxHealth) {
-            currentHealth += rate;
-        } else {
-            currentHealth = maxHealth;
-        }
-    }
-
     public void decrementHealthBy(double rate) {
         if (currentHealth - rate > 0) {
             currentHealth -= rate;

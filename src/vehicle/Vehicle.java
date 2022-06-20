@@ -27,24 +27,16 @@ public abstract class Vehicle {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getCurrentSpeed() {
         return currentSpeed;
-    }
-
-    public void showName() {
-        System.out.println(name);
     }
 
     public void getHit(double rate) {
         healthBar.decrementHealthBy(rate);
     }
 
-    public void getHealth(Long rate) {
-        healthBar.incrementHealthBy(rate);
+    public HealthBar getHealth() {
+        return healthBar;
     }
 
     public void addItems(List<Item> items) {
@@ -77,6 +69,10 @@ public abstract class Vehicle {
             return false;
         }
         return true;
+    }
+
+    public boolean isAlive() {
+        return healthBar.getAlive();
     }
 
     public abstract void renderConfigComponent();

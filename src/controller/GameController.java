@@ -9,6 +9,7 @@ import vehicle.ability.Flyable;
 import vehicle.ability.Runnable;
 import vehicle.ability.Submersible;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,11 +22,14 @@ public class GameController {
     private final List<Environment> environments;
     private Environment randomEnvironment;
     private int direction;
+    private final Random random;
 
     private GameController() {
         gameStage = GameStage.CHOOSE_VEHICLE;
         items = new ArrayList<>();
         environments = new ArrayList<>();
+        random = new Random();
+        random.setSeed(Instant.now().getEpochSecond());
     }
 
     public static GameController getGameController() {
@@ -56,38 +60,35 @@ public class GameController {
                 renderConfigItem();
             }
             case PLAY_GAME -> {
-                Random rand = new Random();
-                randomEnvironment = environments.get(rand.nextInt(environments.size()));
+                randomEnvironment = environments.get(random.nextInt(environments.size()));
                 switch (randomEnvironment) {
                     case LAND -> {
-                        direction = rand.nextInt(2);
+                        direction = random.nextInt(1, 3);
                         System.out.println("1. Move forward");
                         System.out.println("2. Move backward");
                     }
                     case AIR -> {
-                        direction = rand.nextInt(2);
+                        direction = random.nextInt(1, 5);
                         System.out.println("1. Fly up");
                         System.out.println("2. fly down");
                         System.out.println("3. fly forward");
                         System.out.println("4. fly backward");
                     }
                     case HOLLOW_WATER -> {
-                        direction = rand.nextInt(4);
+                        direction = random.nextInt(1, 5);
                         System.out.println("1. Swim forward");
                         System.out.println("2. Swim backward");
                         System.out.println("3. Dive up");
                         System.out.println("4. Dive down");
                     }
                     case SHALLOW_WATER -> {
-                        direction = rand.nextInt(2);
-
+                        direction = random.nextInt(1, 3);
                         System.out.println("1. Swim forward");
                         System.out.println("2. Swim backward");
                     }
                 }
                 System.out.println("If press " + direction + " you won't loose health");
             }
-            default -> throw new IllegalStateException("Unexpected value");
         }
         System.out.println("Press q to end program");
     }
@@ -139,7 +140,13 @@ public class GameController {
             case PLAY_GAME -> {
                 int inputInt = Integer.parseInt(input);
                 if (inputInt != direction) {
-                    vehicle.getHit(Math.random());
+                    System.out.println("You got hit!");
+                    vehicle.getHit(Math.random() * 20);
+                    System.out.println("Your health: " + vehicle.getHealth().getCurrentHealth());
+                    if (!vehicle.isAlive()) {
+                        System.out.println("Your vehicle is broke");
+                        return true;
+                    }
                     break;
                 }
                 switch (randomEnvironment) {
@@ -192,6 +199,9 @@ public class GameController {
                         }
                     }
                 }
+                System.out.println("Your health: " + vehicle.getHealth().getCurrentHealth());
+                System.out.println("Your vehicle speed: " + vehicle.getCurrentSpeed());
+                System.out.println("your vehicle attitude: ");
             }
             default -> throw new IllegalStateException("Unexpected value");
         }
