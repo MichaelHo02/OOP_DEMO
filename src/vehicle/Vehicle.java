@@ -12,6 +12,7 @@ public abstract class Vehicle {
     protected Long acceleration;
     protected Long deceleration;
     protected Long currentSpeed;
+    protected Long attitude;
     protected final List<Item> items;
 
     public Vehicle() {
@@ -19,6 +20,7 @@ public abstract class Vehicle {
         this.acceleration = null;
         this.deceleration = null;
         this.currentSpeed = 0L;
+        this.attitude = 100L;
         healthBar = new HealthBar(100);
         items = new ArrayList<>();
     }

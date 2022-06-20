@@ -6,5 +6,4 @@ public enum GameStage {
     CONFIG_COMPONENT,
     CONFIG_ITEM,
     PLAY_GAME,
-    END_GAME,
 }

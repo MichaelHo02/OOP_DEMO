@@ -61,6 +61,7 @@ public class GameController {
             }
             case PLAY_GAME -> {
                 randomEnvironment = environments.get(random.nextInt(environments.size()));
+                System.out.println("You are on: " + randomEnvironment.toString());
                 switch (randomEnvironment) {
                     case LAND -> {
                         direction = random.nextInt(1, 3);
@@ -106,15 +107,15 @@ public class GameController {
                         environments.addAll(List.of(Environment.LAND));
                     }
                     case "2" -> {
-                        new Plane();
+                        vehicle = new Plane();
                         environments.addAll(List.of(Environment.AIR));
                     }
                     case "3" -> {
-                        new Boat();
+                        vehicle = new Boat();
                         environments.addAll(List.of(Environment.HOLLOW_WATER));
                     }
                     case "4" -> {
-                        new SeaPlane();
+                        vehicle = new SeaPlane();
                         environments.addAll(List.of(Environment.HOLLOW_WATER, Environment.AIR));
                     }
                     default -> throw new IllegalStateException("Unexpected value: " + input);

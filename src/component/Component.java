@@ -1,7 +1,5 @@
 package component;
 
-import config.Environment;
-
 public abstract class Component {
     protected final String name;
     protected Long frictionBonus;
@@ -15,22 +13,6 @@ public abstract class Component {
 
     public String getName() {
         return name;
-    }
-
-    public void setFrictionBonus(Long frictionBonus) {
-        this.frictionBonus = frictionBonus;
-    }
-
-    public Long getFrictionBonus() {
-        return frictionBonus;
-    }
-
-    public Long getWearRate() {
-        return wearRate;
-    }
-
-    public void setWearRate(Long wearRate) {
-        this.wearRate = wearRate;
     }
 
     public Long applyFrictionBonus() {
