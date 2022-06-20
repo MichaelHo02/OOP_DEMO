@@ -1,7 +1,6 @@
 package vehicle;
 
 import component.Wheel;
-import item.Item;
 import vehicle.ability.Runnable;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class Car extends Vehicle implements Runnable {
     @Override
     public boolean configComponent(String input) {
         try {
-            String[] strings = input.split(" ");
+            String[] strings = input.split("\s");
             for (int i = 0; i < Integer.parseInt(strings[0]); i++) {
                 wheels.add(new Wheel(strings[1], Long.parseLong(strings[2]), Long.parseLong(strings[3])));
             }
