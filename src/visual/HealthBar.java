@@ -1,25 +1,25 @@
 package visual;
 
 public class HealthBar {
-    private Long maxHealth;
-    private Long currentHealth;
+    private double maxHealth;
+    private double currentHealth;
     private Boolean alive;
 
-    public HealthBar(Long health) {
+    public HealthBar(double health) {
         this.maxHealth = health;
         this.currentHealth = maxHealth;
         this.alive = true;
     }
 
-    public Long getMaxHealth() {
+    public double getMaxHealth() {
         return maxHealth;
     }
 
-    public void setMaxHealth(Long maxHealth) {
+    public void setMaxHealth(double maxHealth) {
         this.maxHealth = maxHealth;
     }
 
-    public Long getCurrentHealth() {
+    public double getCurrentHealth() {
         return currentHealth;
     }
 
@@ -27,7 +27,7 @@ public class HealthBar {
         return alive;
     }
 
-    public void incrementHealthBy(Long rate) {
+    public void incrementHealthBy(double rate) {
         if (currentHealth + rate <= maxHealth) {
             currentHealth += rate;
         } else {
@@ -35,7 +35,7 @@ public class HealthBar {
         }
     }
 
-    public void decrementHealthBy(Long rate) {
+    public void decrementHealthBy(double rate) {
         if (currentHealth - rate > 0) {
             currentHealth -= rate;
         } else {

@@ -1,6 +1,6 @@
 package vehicle.ability;
 
-public interface Submersible {
+public interface Submersible extends Afloat {
     void diveUp();
 
     void diveDown();

@@ -19,7 +19,7 @@ public abstract class Vehicle {
         this.acceleration = null;
         this.deceleration = null;
         this.currentSpeed = 0L;
-        healthBar = new HealthBar(100L);
+        healthBar = new HealthBar(100);
         items = new ArrayList<>();
     }
 
@@ -39,17 +39,12 @@ public abstract class Vehicle {
         System.out.println(name);
     }
 
-    public void getHit(Long rate) {
+    public void getHit(double rate) {
         healthBar.decrementHealthBy(rate);
     }
 
     public void getHealth(Long rate) {
         healthBar.incrementHealthBy(rate);
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
-        updateStat();
     }
 
     public void addItems(List<Item> items) {
@@ -65,7 +60,26 @@ public abstract class Vehicle {
         }
     }
 
-    public abstract void configComponent(String input);
+    public void renderConfigVehicle() {
+        System.out.println(
+                "Please enter the following: [name] [acceleration] [deceleration]"
+        );
+    }
+
+    public boolean configVehicle(String input) {
+        try {
+            String[] strings = input.split("\s");
+            this.name = strings[0];
+            this.acceleration = Long.parseLong(strings[1]);
+            this.deceleration = Long.parseLong(strings[2]);
+        } catch (Exception e) {
+            System.out.println("--Invalid input--");
+            return false;
+        }
+        return true;
+    }
 
     public abstract void renderConfigComponent();
+
+    public abstract boolean configComponent(String input);
 }

@@ -38,6 +38,4 @@ public abstract class Component {
         frictionBonus -= wearRate;
         return returnValue;
     }
-
-    abstract public boolean isRightEnvironment(Environment environment);
 }

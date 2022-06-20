@@ -6,9 +6,10 @@ public class Item {
     private Long decelerationBoost;
     private Long healthBoost;
 
-    public Item(String name, Long speedBoost, Long healthBoost) {
+    public Item(String name, Long accelerationBoost, Long decelerationBoost, Long healthBoost) {
         this.name = name;
-        this.accelerationBoost = speedBoost;
+        this.accelerationBoost = accelerationBoost;
+        this.decelerationBoost = decelerationBoost;
         this.healthBoost = healthBoost;
     }
 
