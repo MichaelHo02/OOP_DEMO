@@ -1,10 +1,9 @@
 package vehicle;
 
-import java.util.ArrayList;
-
 public class Car {
     /**
-     * This is attributes
+     * They are attributes
+     * Todo: add modifiers
      */
     String name;
     Long acceleration;
@@ -23,5 +22,15 @@ public class Car {
         this.attitude = 100L;
     }
 
-    
+    /**
+     * They are methods
+     * Todo: add modifiers
+     */
+    public void runForward() {
+        currentSpeed += acceleration;
+    }
+
+    public void runBackward() {
+        currentSpeed -= deceleration;
+    }
 }
